@@ -1,28 +1,48 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
   background-color: #f9f9f9;
-  color: #333;
+
+  color: #333333ff;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 h1 {
   text-align: center;
+  background-color: #cc75d8;
+
   color: #800080;
+  font-size: 40px;
 }
 
 h2 {
-  text-align: left;
+  background-color: #cc75d8;
+  text-indent: 50px;
+  
   color: #800080;
-  margin-left: 20px;
+  font-size: 30px;
 }
 
 p {
   line-height: 1.6;
   text-indent: 30px;
-  margin: 15px;
   margin-left: 40px;
+
+  font-size: 20px;
 }
+
+button {
+  margin-left: 30px;
+}
+
+span.buttons {
+  margin-left: 30px;
+}
+
+h3 {
+  text-indent: 50px;
+  
+  font-size: 20px;
+}
+
 
 img {
   max-width: 50%;
