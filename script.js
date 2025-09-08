@@ -1,6 +1,7 @@
 function lightMode() {
     document.getElementById('mainPage').style.backgroundColor = "#f9f9f9";
     document.getElementById('mainPage').style.color = "#333333ff";
+    document.getElementById('mainPage').style.fontFamily = "'Times New Roman', Times, serif";
 
     let headerA = document.getElementsByClassName('headerA');
     for (let i = 0; i < headerA.length; i++) {
@@ -20,6 +21,7 @@ function lightMode() {
 function darkMode() {
     document.getElementById('mainPage').style.backgroundColor = "#333333ff";
     document.getElementById('mainPage').style.color = "#f9f9f9";
+    document.getElementById('mainPage').style.fontFamily = "'Times New Roman', Times, serif";
 
     let headerA = document.getElementsByClassName('headerA');
     for (let i = 0; i < headerA.length; i++) {
