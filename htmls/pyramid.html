@@ -54,14 +54,10 @@
       // base area
       let baseArea = l * w;
 
-      // slant heights for surface area
-      let slantL = Math.sqrt((w / 2) ** 2 + h ** 2);
-      let slantW = Math.sqrt((l / 2) ** 2 + h ** 2);
-
       // volume
       let volume = (1 / 3) * baseArea * h;
 
-      // display results
+      // display results in <p>s
       document.getElementById("perimeter").textContent = "Base Perimeter: " + perimeter.toFixed(2);
       document.getElementById("baseArea").textContent = "Base Area: " + baseArea.toFixed(2);
       document.getElementById("volume").textContent = "Volume: " + volume.toFixed(2);
