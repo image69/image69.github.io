@@ -1,0 +1,48 @@
+body {
+  background-color: #f9f9f9;
+
+  color: #333333ff;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.rectImage {
+    max-width: 10%;
+}
+
+.pyramidImage {
+    max-width: 20%;
+}
+
+h1 {
+    background-color: #cc75d8;
+    text-indent: 50px;
+  
+    color: #800080;
+    font-size: 40px;
+}
+
+label {
+    text-indent: 50px;
+  
+    font-size: 20px;
+    font-weight: bold;
+}
+
+input {
+    height: 30px;
+}
+
+h3 {
+    background-color: #cc75d8;
+    text-indent: 50px;
+  
+    color: #800080;
+    font-size: 40px;
+}
+
+p {
+    text-indent: 50px;
+  
+    font-size: 20px;
+    font-weight: bold;
+}
