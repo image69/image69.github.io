@@ -1,0 +1,55 @@
+body#tttPage {
+    background-color: #e0f7ff;
+    font-family: Arial;
+    color: #000000;
+}
+
+h2 {
+    font-size: 20px;
+    background-color: #2fafdd;
+}
+
+p {
+    margin-left: 40px;
+    font-size: 20px;
+}
+
+#note {
+    font-size: 10px;
+}
+
+table {
+    margin: auto;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
+    text-align: center;
+    background-color: #a0d8ef;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: #2fafdd;
+}
+
+#resetButton {
+    display: block;
+    margin: auto;
+    font-size: 20px;
+    border-radius: 8px;
+    background-color: #0099cc;
+    color: white;
+}
+
+#resetButton:hover {
+    background-color: #007799;
+}
+
+#winnerHeader {
+    font-size: 20px;
+    text-align: center;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <script src = "../scripts/tictactoescript.js"></script>
+    <link rel="stylesheet" href="../styles/tictactoestyle.css">
+</head>
+<body id="tttPage">
+    <h1 class="headerA">&#x1F427; vs &#x1FAA8;</h1>
+    <!--naming all classes in case i want to style/script even more l8r-->
+    <p class="text">The Penguins &#x1F427; and the Rocks &#x1FAA8; are at war! <br></p>
+    <h2 id="rules">Rules:</h2>
+    <p class="text">This is a game for TWO players. Each player chooses a team, the Penguins &#x1F427; or the Rocks &#x1FAA8;.<br>
+    Penguins &#x1F427; have feet, so the Penguin &#x1F427; player moves first. <br>
+    Click on a spot to place your Penguin &#x1F427;. The turn will pass to the patient Rock &#x1FAA8; player. <br> <br>
+    Each player will continue this maddening cycle of generational hatred until one side vanquishes the other by placing three of their soldiers in 
+    a straight line before the other, or when the inevitable attrition of the war leaves both sides in a stalemate with no moves let to make. <br><br>
+    Rated M for Mature: violent themes and imagery <br><span id="note">(note: not officially rated by the ESRB or similar organizations.)</span></p>
+    <table id="table">
+        <tr id="tableRow">
+            <!--letter is column, number is row-->
+            <td><button class="tttGame" id="q1" onclick="changeMark('q1')"></button></td>
+            <td><button class="tttGame" id="w1" onclick="changeMark('w1')"></button></td>
+            <td><button class="tttGame" id="e1" onclick="changeMark('e1')"></button></td>
+        </tr>
+        <tr class="tableRow">
+            <td><button class="tttGame" id="q2" onclick="changeMark('q2')"></button></td>
+            <td><button class="tttGame" id="w2" onclick="changeMark('w2')"></button></td>
+            <td><button class="tttGame" id="e2" onclick="changeMark('e2')"></button></td>
+        </tr>
+        <tr class="tableRow">
+            <td><button class="tttGame" id="q3" onclick="changeMark('q3')"></button></td>
+            <td><button class="tttGame" id="w3" onclick="changeMark('w3')"></button></td>
+            <td><button class="tttGame" id="e3" onclick="changeMark('e3')"></button></td>
+        </tr>
+    </table>
+
+    <button id="resetButton" onclick="reset()">Reset Game</button>
+
+    <h2 id="winnerHeader">No Winner Yet</h2>
+    
+    <p><a href="../mainpage.html">Return</a></p>
+</body>
+</html>
