@@ -11,10 +11,9 @@ function changeMark(buttonID) {
 
     if (!currentMark) {
         if (xTurn) {
-            document.getElementById(buttonID).innerHTML = "&#x1F427;";
-        }
-        else {
-            document.getElementById(buttonID).innerHTML = "&#x1FAA8;";
+            document.getElementById(buttonID).innerHTML = '<span style="color: red;">&#x1F427;</span>'; // teach asked specifically for font color change too
+        } else {
+            document.getElementById(buttonID).innerHTML = '<span style="color: green;">&#x1FAA8;</span>';
         }
 
         xTurn = !xTurn;
