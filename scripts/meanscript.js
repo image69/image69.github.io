@@ -2,7 +2,7 @@ let dataset = [];
 
 function updateDisplay() {
     document.getElementById("dataset").textContent = "[" + dataset.join(", ") + "]";
-    document.getElementById("message").textContent = ""; // clear message after success
+    document.getElementById("message").textContent = "";
 }
 
 function addValue() {
