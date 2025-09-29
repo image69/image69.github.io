@@ -34,7 +34,7 @@ function checkWin() {
     let w3 = document.getElementById("w3").innerHTML;
     let e3 = document.getElementById("e3").innerHTML;
 
-    if (turn >= 5) { //cant happen before turn 6
+    if (turn >= 5) { // cant happen before turn 6
         switch (true) {
             // rows
             case (q1 && q1 === w1 && w1 === e1):

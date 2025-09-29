@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9fafc;
+    font-size: 24px;
+}
+
+h1 {
+    text-align: center;
+    color: #444;
+}
+
+.container {
+    text-align: center;
+    background-color: #cc75d8;
+    padding: 15px;
+}
+
+input {
+    padding: 8px;
+    font-size: 20px;
+    width: 200px;
+}
+
+button {
+    padding: 8px 15px;
+    font-size: 20px;
+    background-color: #800080;
+    color: white;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #cc75d8;
+}
+
+h2 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+.message {
+    text-align: center;
+}
