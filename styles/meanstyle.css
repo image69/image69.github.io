@@ -1,12 +1,13 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9fafc;
+    background-color: #f9f9f9;
+
+    color: #333333ff;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 24px;
 }
 
 h1 {
     text-align: center;
-    color: #444;
 }
 
 .container {
@@ -17,6 +18,7 @@ h1 {
 
 input {
     padding: 8px;
+    
     font-size: 20px;
     width: 200px;
 }
@@ -25,8 +27,8 @@ button {
     padding: 8px 15px;
     font-size: 20px;
     background-color: #800080;
+
     color: white;
-    border-radius: 4px;
 }
 
 button:hover {
