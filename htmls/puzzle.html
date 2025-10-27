@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Puzzle</title>
+    <style>
+      #puzzle {
+        width: 500px;
+        height: 500px;
+        border: 5px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DOM Puzzle</h1>
+    <div id="puzzle"></div>
+    <p>This is a puzzle created entirely with JavaScript.</p>
+    <br>
+    <p class="paragraph"><a href="../index.html">Return</a></p>
+
+    <script>
+      const puzzle = document.getElementById("puzzle");
+      puzzle.style.position = "relative";
+
+      function createBlock(label, x, y, color) {
+        const block = document.createElement("div");
+        block.textContent = label;
+        block.style.position = "absolute";
+        block.style.left = x + "px";
+        block.style.top = y + "px";
+        block.style.width = "125px";
+        block.style.height = "125px";
+        block.style.border = "5px solid black";
+        block.style.backgroundColor = color;
+        block.style.display = "flex";
+        block.style.alignItems = "center";
+        block.style.justifyContent = "center";
+        block.style.fontWeight = "bold";
+        block.style.color = "white";
+        block.style.boxSizing = "border-box";
+        return block;
+      }
+
+      puzzle.append(
+        createBlock("A", 0, 0, "#A245F4"),
+        createBlock("B", 125, 0, "#4A2874"),
+        createBlock("C", 0, 125, "#594492"),
+        createBlock("D", 125, 125, "#854DDC")
+      );
+
+      function createSquare(x, y, color) {
+        const sq = document.createElement("div");
+        sq.style.position = "absolute";
+        sq.style.left = x + "px";
+        sq.style.top = y + "px";
+        sq.style.width = "250px";
+        sq.style.height = "250px";
+        sq.style.border = "5px solid black";
+        sq.style.backgroundColor = color;
+        sq.style.boxSizing = "border-box";
+        return sq;
+      }
+
+      puzzle.append(
+        createSquare(250, 0, "#7F3A8A"),
+        createSquare(0, 250, "#733A80")
+      );
+
+      for (let i = 0; i < 100; i++) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.style.position = "absolute";
+
+        const col = i % 10;
+        const row = Math.floor(i / 10);
+
+        btn.style.left = 250 + col * 25 + "px";
+        btn.style.top = 250 + row * 25 + "px";
+        btn.style.width = "25px";
+        btn.style.height = "25px";
+        btn.style.backgroundColor = "#C39CFE";
+        btn.style.border = "1px solid black";
+        btn.style.boxSizing = "border-box";
+
+        btn.addEventListener("click", (e) => {
+          const b = e.currentTarget;
+          b.style.backgroundColor = "#4A2574";
+          const all = Array.from(puzzle.querySelectorAll("button"));
+          const idx = all.indexOf(b);
+          if (idx > 0) all[idx - 1].style.backgroundColor = "#FF9E00";
+          if (idx < all.length - 1) all[idx + 1].style.backgroundColor = "#FF9E00";
+        });
+
+        puzzle.appendChild(btn);
+      }
+
+      puzzle.addEventListener("mouseenter", (e) => {
+        e.currentTarget.style.border = "5px solid orange";
+      });
+
+      puzzle.addEventListener("mouseleave", (e) => {
+        e.currentTarget.style.border = "5px solid black";
+      });
+    </script>
+  </body>
+</html>
