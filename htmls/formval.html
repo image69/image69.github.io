@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comment Submission Form</title>
+  <style>
+    body { 
+        font-family: Arial, sans-serif; 
+        margin: 40px; 
+    }
+
+    form { 
+        max-width: 500px; 
+        padding: 20px; 
+        border: 1px solid #ccc; 
+        border-radius: 8px; 
+    }
+
+    label { 
+        display: block; 
+        margin-top: 12px; 
+    }
+
+    input, textarea { 
+        width: 100%; 
+        padding: 8px; 
+        margin-top: 4px; 
+        border-radius: 4px; 
+        border: 1px solid #aaa; 
+    }
+
+    .feedback { 
+        font-size: 0.9em; 
+        margin-top: 4px; 
+    }
+
+    .valid { 
+        color: green; 
+    }
+
+    .invalid { 
+        color: red; 
+    }
+
+    #formMessage {
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    button { 
+        margin-top: 16px; 
+        padding: 10px 16px; 
+        border: none; 
+        border-radius: 6px; 
+        background: #800080; 
+        color: white; 
+        cursor: pointer; 
+    }
+
+    button:hover { 
+        background: #cc75d8; 
+    }
+  </style>
+</head>
+<body>
+
+<h2>Comment Submission Form</h2>
+
+<form id="commentForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required pattern="[A-Za-z\s]+" placeholder="Enter your name">
+
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required 
+    pattern="^(\(\d{3}\)\d{3}-\d{4}|\d{3}-\d{3}-\d{4}|\d{10})$" 
+    placeholder="123-456-7890 or (123)456-7890 or 1234567890">
+    <!--googled how to accept all three formats for phone numbers.. i dont really get it but w/e-->
+
+  <label for="email">Email Address:</label>
+  <input type="email" id="email" name="email" required placeholder="you@example.com">
+
+  <label for="comment">Comment:</label>
+  <textarea id="comment" name="comment" rows="4" required></textarea>
+
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required placeholder="Letters, numbers, underscores only">
+  <div id="userFeedback" class="feedback"></div>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required placeholder="Min 8 chars, upper, lower, number, special">
+  <div id="passFeedback" class="feedback"></div>
+
+  <button type="submit">Submit</button>
+  <div id="formMessage" class="feedback"></div>
+</form>
+
+<script>
+  const username = document.getElementById('username');
+  const userFeedback = document.getElementById('userFeedback');
+  username.addEventListener('input', () => {
+    const valid = /^[A-Za-z0-9_]+$/.test(username.value);
+    if (valid) {
+      userFeedback.textContent = "Valid username ✔";
+      userFeedback.className = "feedback valid";
+    } else {
+      userFeedback.textContent = "Invalid characters. Use only letters, numbers, and underscores.";
+      userFeedback.className = "feedback invalid";
+    }
+  });
+
+  const password = document.getElementById('password');
+  const passFeedback = document.getElementById('passFeedback');
+  password.addEventListener('input', () => {
+    const valid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(password.value);
+    if (valid) {
+      passFeedback.textContent = "Password meets all requirements ✔";
+      passFeedback.className = "feedback valid";
+    } else {
+      passFeedback.textContent = "Must include uppercase, lowercase, number, special char, and 8+ chars.";
+      passFeedback.className = "feedback invalid";
+    }
+  });
+
+  function sanitizeInput(text) {
+    const map = {
+      '<': '&lt;',
+      '>': '&gt;',
+      '&': '&amp;',
+      '"': '&quot;',
+      "'": '&apos;'
+    };
+    return text.replace(/[<>&"']/g, m => map[m]);
+  }
+
+  document.getElementById('commentForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const fields = ['name', 'phone', 'email', 'comment', 'username', 'password'];
+    const sanitizedData = {};
+    const formMessage = document.getElementById('formMessage');
+
+    fields.forEach(field => {
+      const input = document.getElementById(field);
+      sanitizedData[field] = sanitizeInput(input.value);
+    });
+
+    console.log("Sanitized Data:", sanitizedData);
+
+    formMessage.textContent = "Form submitted successfully! Your inputs have been sanitized.";
+    formMessage.className = "feedback valid";
+
+    e.target.reset();
+    userFeedback.textContent = "";
+    passFeedback.textContent = "";
+  });
+</script>
+
+<br>
+<a href="../index.html">Return</a>
+
+</body>
+</html>
