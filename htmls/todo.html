@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f9f9f9;
+            color: #333333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #800080;
+            background: #cc75d8;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px 0;
+            padding: 5px;
+            background: #e0b3e6;
+            border-radius: 5px;
+        }
+
+        button {
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body id="mainPage">
+
+    <h1 class="headerA">To-Do List</h1>
+
+    <input id="taskInput" type="text" placeholder="Enter a task">
+    <button id="addBtn">Add</button>
+
+    <ul id="taskList"></ul>
+
+    <p>Tasks added this session: <span id="sessionCount">0</span></p>
+
+    <button id="toggleTheme">Toggle Theme (<span id="mode">Light</span>)</button>
+
+    <h2 class="headerB">Motivational Quote</h2>
+    <p id="quote">Loading...</p>
+    <button id="refreshQuote">New Quote</button>
+
+    <script>
+        const input = document.getElementById('taskInput');
+        const list = document.getElementById('taskList');
+        const countDisplay = document.getElementById('sessionCount');
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+
+        function renderTasks() {
+            list.innerHTML = '';
+            tasks.forEach((t, i) => {
+            const li = document.createElement('li');
+            li.textContent = t;
+
+            const del = document.createElement('button');
+            del.textContent = '❌';
+            del.onclick = () => {
+            tasks.splice(i, 1);
+            saveTasks();
+            };
+
+            li.appendChild(del);
+            list.appendChild(li);
+        });
+        }
+
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            renderTasks();
+        }
+
+
+        document.getElementById('addBtn').onclick = () => {
+            if (input.value.trim()) {
+                tasks.push(input.value.trim());
+                saveTasks();
+                input.value = '';
+
+            let sessionCount = Number(sessionStorage.getItem('count') || 0) + 1;
+            sessionStorage.setItem('count', sessionCount);
+            countDisplay.textContent = sessionCount;
+        }
+        };
+
+
+        window.onload = () => {
+            renderTasks();
+            countDisplay.textContent = sessionStorage.getItem('count') || 0;
+            loadTheme();
+            fetchQuote();
+        };
+
+
+        function setCookie(name, value, days = 30) {
+            document.cookie = `${name}=${value};max-age=${days * 86400}`;
+        }
+
+
+        function getCookie(name) {
+            return document.cookie.split('; ').find(r => r.startsWith(name + '='))?.split('=')[1];
+        }
+
+
+        function lightMode() {
+            document.getElementById('mainPage').style.backgroundColor = "#f9f9f9";
+            document.getElementById('mainPage').style.color = "#333333";
+
+            document.querySelectorAll('.headerA, .headerB').forEach(el => {
+                el.style.backgroundColor = "#cc75d8";
+                el.style.color = "#800080";
+            });
+
+        document.getElementById('mode').textContent = "Light";
+        }
+
+
+        function darkMode() {
+            document.getElementById('mainPage').style.backgroundColor = "#333333";
+            document.getElementById('mainPage').style.color = "#f9f9f9";
+
+            document.querySelectorAll('.headerA, .headerB').forEach(el => {
+                el.style.backgroundColor = "#800080";
+                el.style.color = "#cc75d8";
+            });
+
+        document.getElementById('mode').textContent = "Dark";
+        }
+
+
+        function loadTheme() {
+            const theme = getCookie('theme');
+            theme === 'dark' ? darkMode() : lightMode();
+        }
+
+
+        document.getElementById('toggleTheme').onclick = () => {
+            const current = document.getElementById('mode').textContent;
+            current === 'Light'
+            ? (darkMode(), setCookie('theme', 'dark'))
+            : (lightMode(), setCookie('theme', 'light'));
+        };
+
+
+        async function fetchQuote() {
+            try {
+                const res = await fetch('https://api.quotable.io/random');
+                const data = await res.json();
+                document.getElementById('quote').textContent = data.content;
+            } catch {
+                document.getElementById('quote').textContent = "Could not load quote.";
+            }
+        } 
+
+        document.getElementById('refreshQuote').onclick = fetchQuote;
+
+    </script>
+
+    <br>
+    <a href="../index.html">Return</a>
+</body>
+</html>
